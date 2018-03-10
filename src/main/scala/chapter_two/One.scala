@@ -10,6 +10,7 @@ object One {
   type Shape2 = Either[Rectangle2, Circle2]
 
   def apply(): Unit = {
+    println("Chapter 2.1")
 
     println("Using traits and case classes:")
 
@@ -47,18 +48,17 @@ object One {
     }
   }
 
-}
-
-//Traits are coproducts because they define 'or' relationships
-sealed trait Shape {
-  override def toString: String = {
-    this match {
-      case Rectangle(w, h) => s"Rectangle with width $w and height $h"
-      case Circle(r) => s"Circle with radius $r"
+  //Traits are coproducts because they define 'or' relationships
+  sealed trait Shape {
+    override def toString: String = {
+      this match {
+        case Rectangle(w, h) => s"Rectangle with width $w and height $h"
+        case Circle(r) => s"Circle with radius $r"
+      }
     }
   }
+  //Case classes are products because they define 'and' relationships
+  final case class Rectangle(width: Double, height: Double) extends Shape
+  final case class Circle(radius: Double) extends Shape
 }
-//Case classes are products because they define 'and' relationships
-final case class Rectangle(width: Double, height: Double) extends Shape
-final case class Circle(radius: Double) extends Shape
 
