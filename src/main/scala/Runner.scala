@@ -4,12 +4,13 @@ object Runner extends App{
   main()
 
   def main(): Unit = {
-    val product: String :: Int :: Boolean :: HNil =
-      "Sunday" :: 1 :: false :: HNil
+    chapter_two.Three()
 
-    println(product.head)
-    println(product.tail)
+  }
 
-
+  def chapterTwo() = {
+    chapter_two.One()
+    chapter_two.Two()
+    chapter_two.Three()
   }
 }
