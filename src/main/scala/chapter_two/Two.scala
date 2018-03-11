@@ -1,6 +1,6 @@
 package chapter_two
 import shapeless.Generic.Aux
-import shapeless._
+import shapeless.{HNil, ::, Generic}
 
 object Two {
   def apply(): Unit = {
