@@ -46,5 +46,5 @@ object Two {
 
   //Exact same generic representation
   case class IceCream(name: String, numCherries: Int, inCone: Boolean)
-  case class Employee(name: String, numCherries: Int, inCone: Boolean)
+  case class Employee(name: String, number: Int, isManager: Boolean)
 }
