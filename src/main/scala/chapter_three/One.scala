@@ -5,17 +5,6 @@ import shapeless.the
 
 object One {
   def apply(): Unit = {
-    val employees: List[Employee] = List(
-      Employee("Bill", 1, true),
-      Employee("Peter", 2, false),
-      Employee("Milton", 3, false)
-    )
-
-    val iceCreams: List[IceCream] = List(
-      IceCream("Sundae", 8, false),
-      IceCream("Cornetto", 0, true),
-      IceCream("Banana Split", 4, false)
-    )
 
     //Compiler calculates the value of the type parameter and
     //looks for the implicit implementation of it
@@ -33,6 +22,18 @@ object One {
     println(iceCreamEncoder.encode(iceCreams.head))
     println(employeeEncoder.encode(employees.head))
   }
+
+  val employees: List[Employee] = List(
+    Employee("Bill", 1, true),
+    Employee("Peter", 2, false),
+    Employee("Milton", 3, false)
+  )
+
+  val iceCreams: List[IceCream] = List(
+    IceCream("Sundae", 8, false),
+    IceCream("Cornetto", 0, true),
+    IceCream("Banana Split", 4, false)
+  )
 
   def writeCsv[A](values: List[A])(implicit enc: CsvEncoder[A]): String =
     values
