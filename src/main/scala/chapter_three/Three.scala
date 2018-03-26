@@ -1,20 +1,15 @@
 package chapter_three
 
 import chapter_three.One.CsvEncoder
+import chapter_three.Two._
 import chapter_two.One.{Circle, Rectangle, Shape}
 import shapeless.{:+:, CNil, Coproduct, Inl, Inr, Lazy}
 
 object Three {
 
   def apply() = {
-    /**
-      * 1. Error:(12, 17) could not find implicit value for parameter enc: chapter_three.One.CsvEncoder[chapter_two.One.Shape]
-    One.writeCsv(shapes)
-      * 2. Error:(12, 17) not enough arguments for method writeCsv: (implicit enc: chapter_three.One.CsvEncoder[chapter_two.One.Shape])String.
-Unspecified value parameter enc.
-    One.writeCsv(shapes)
-      */
-//    One.writeCsv(shapes)
+    val foo = One.writeCsv(shapes)
+    println(foo)
   }
 
   val shapes: List[Shape] = List(
