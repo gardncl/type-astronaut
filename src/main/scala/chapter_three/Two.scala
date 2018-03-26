@@ -4,7 +4,7 @@ import java.util.Date
 
 import chapter_three.One.CsvEncoder
 import chapter_two.Two.IceCream
-import shapeless.{::, Generic, HList, HNil}
+import shapeless.{::, Generic, HList, HNil, Lazy}
 
 object Two {
 
@@ -50,10 +50,11 @@ object Two {
   //Implicit encoders for the individual parts above can be combined recursively
   //to handle any case class using them
   implicit def hlistEncoder[H, T <: HList]
-  (implicit hEncoder: CsvEncoder[H], tEncoder: CsvEncoder[T]): CsvEncoder[H :: T] =
+  (implicit hEncoder: Lazy[CsvEncoder[H]], //wrap in lazy to avoid implicit divergence
+   tEncoder: CsvEncoder[T]): CsvEncoder[H :: T] =
     createEncoder {
       case h :: t =>
-        hEncoder.encode(h) ++ tEncoder.encode(t)
+        hEncoder.value.encode(h) ++ tEncoder.encode(t)
 
     }
 
@@ -72,7 +73,7 @@ object Two {
   //to R, and a CsvEncoder for R, create a CsvEncoder for A.
   implicit def genericEncoder[A, R]
   (implicit gen: Generic.Aux[A, R],
-   enc: CsvEncoder[R]): CsvEncoder[A] =
-    createEncoder(a => enc.encode(gen.to(a)))
+   enc: Lazy[CsvEncoder[R]]): CsvEncoder[A] =
+    createEncoder(a => enc.value.encode(gen.to(a)))
 
 }

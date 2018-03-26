@@ -2,7 +2,7 @@ package chapter_three
 
 import chapter_three.One.CsvEncoder
 import chapter_two.One.{Circle, Rectangle, Shape}
-import shapeless.{:+:, CNil, Coproduct, Inl, Inr}
+import shapeless.{:+:, CNil, Coproduct, Inl, Inr, Lazy}
 
 object Three {
 
@@ -37,9 +37,9 @@ Unspecified value parameter enc.
     * the two subtypes of :+:, which are Inl for left and Inr for right.
     */
   implicit def coproductEncoder[H, T <: Coproduct]
-  (implicit hEncoder: CsvEncoder[H], tEncoder: CsvEncoder[T]): CsvEncoder[H :+: T] =
+  (implicit hEncoder: Lazy[CsvEncoder[H]], tEncoder: CsvEncoder[T]): CsvEncoder[H :+: T] =
     Two.createEncoder {
-    case Inl(h) => hEncoder.encode(h)
+    case Inl(h) => hEncoder.value.encode(h)
     case Inr(t) => tEncoder.encode(t)
   }
 
