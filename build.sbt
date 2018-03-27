@@ -1,4 +1,4 @@
-name := "shapelessplayground"
+name := "type-astronaut-shapeless"
 
 version := "0.1"
 
