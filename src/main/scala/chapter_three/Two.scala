@@ -55,7 +55,6 @@ object Two {
     createEncoder {
       case h :: t =>
         hEncoder.value.encode(h) ++ tEncoder.encode(t)
-
     }
 
   val reprEncoder: CsvEncoder[String :: Int :: Boolean :: HNil] =
