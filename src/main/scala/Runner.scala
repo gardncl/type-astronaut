@@ -4,7 +4,7 @@ object Runner extends App{
   main()
 
   def main(): Unit = {
-    chapter_five.Four()
+    chapter_six.Four()
   }
 
   def chapterTwo() = {
@@ -30,5 +30,12 @@ object Runner extends App{
     chapter_five.Two()
     chapter_five.Three()
     chapter_five.Four()
+  }
+
+  def chapterSix() = {
+    chapter_six.One()
+    chapter_six.Two()
+    chapter_six.Three()
+    chapter_six.Four()
   }
 }
